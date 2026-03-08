@@ -23,7 +23,7 @@
   <meta name="theme-color" content="#0a0a0a">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;700;900&display=swap');
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     :root {
       --black: #0a0a0a;
@@ -34,46 +34,9 @@
 
     html { scroll-behavior: smooth; }
 
-    /* 隐藏原生滚动条 */
+    /* 隐藏滚动条 */
     body::-webkit-scrollbar { display: none; }
     html { scrollbar-width: none; }
-
-    /* 自定义法棍滚动条 */
-    .scrollbar-track {
-      position: fixed;
-      top: 0; right: 0;
-      width: 32px;
-      height: 100vh;
-      z-index: 9998;
-      pointer-events: auto;
-    }
-
-    .scrollbar-thumb {
-      position: absolute;
-      right: 6px;
-      width: 20px;
-      pointer-events: auto;
-      cursor: grab;
-      transition: transform 0.1s ease-out;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    .scrollbar-thumb:active {
-      cursor: grabbing;
-    }
-
-    .scrollbar-thumb:hover {
-      transform: scale(1.15);
-    }
-
-    .scrollbar-thumb img {
-      width: 100%;
-      height: auto;
-      display: block;
-      pointer-events: none;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
-    }
 
     body {
       background: var(--black);
@@ -484,13 +447,6 @@
 <body>
   <div class="dots-bg"></div>
 
-  <!-- 法棍滚动条 -->
-  <div class="scrollbar-track" id="scrollTrack">
-    <div class="scrollbar-thumb" id="scrollThumb">
-      <img src="https://pub-7ae31ade2cad4a8dac69ca60c0f034e8.r2.dev/Github/images-1/fa.png" alt="" draggable="false">
-    </div>
-  </div>
-
   <button class="lang-toggle" id="langToggle" aria-label="Switch language">中文</button>
 
   <!-- ===== HERO 分屏 ===== -->
@@ -592,6 +548,18 @@
         <div class="card-arrow">↗</div>
       </a>
     </div>
+    <!-- Row 4: sm + lg -->
+    <div class="works-row">
+      <a class="card card-sm" href="http://toapp.seegood.top/" target="_blank" rel="noopener">
+        <div class="card-index">07</div>
+        <div class="card-content">
+          <div class="card-title">ToApp</div>
+          <div class="card-url">toapp.seegood.top</div>
+          <div class="tag">App</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </a>
+    </div>
   </main>
 
   <footer class="footer">
@@ -650,76 +618,6 @@
 
       mEn.style.display = lang === 'en' ? 'flex' : 'none';
       mZh.style.display = lang === 'zh' ? 'flex' : 'none';
-    });
-  })();
-  </script>
-
-  <script>
-  (function() {
-    /* === 法棍自定义滚动条 === */
-    var track = document.getElementById('scrollTrack');
-    var thumb = document.getElementById('scrollThumb');
-    var thumbImg = thumb.querySelector('img');
-    var dragging = false;
-    var dragStartY = 0;
-    var dragStartScroll = 0;
-
-    function updateThumbPosition() {
-      var scrollTop = window.pageYOffset;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight <= 0) { thumb.style.display = 'none'; return; }
-      thumb.style.display = 'block';
-      var trackH = track.clientHeight;
-      var thumbH = thumb.offsetHeight;
-      var maxTop = trackH - thumbH;
-      var ratio = scrollTop / docHeight;
-      thumb.style.top = (ratio * maxTop) + 'px';
-    }
-
-    // 等图片加载后初始化位置
-    thumbImg.onload = updateThumbPosition;
-    window.addEventListener('scroll', function() {
-      if (!dragging) updateThumbPosition();
-    });
-    window.addEventListener('resize', updateThumbPosition);
-    updateThumbPosition();
-
-    // 拖拽
-    thumb.addEventListener('mousedown', function(e) {
-      e.preventDefault();
-      dragging = true;
-      dragStartY = e.clientY;
-      dragStartScroll = window.pageYOffset;
-      document.body.style.userSelect = 'none';
-    });
-
-    window.addEventListener('mousemove', function(e) {
-      if (!dragging) return;
-      var deltaY = e.clientY - dragStartY;
-      var trackH = track.clientHeight;
-      var thumbH = thumb.offsetHeight;
-      var maxTop = trackH - thumbH;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var scrollDelta = (deltaY / maxTop) * docHeight;
-      window.scrollTo(0, dragStartScroll + scrollDelta);
-      updateThumbPosition();
-    });
-
-    window.addEventListener('mouseup', function() {
-      if (dragging) {
-        dragging = false;
-        document.body.style.userSelect = '';
-      }
-    });
-
-    // 点击轨道跳转
-    track.addEventListener('click', function(e) {
-      if (e.target === thumb || thumb.contains(e.target)) return;
-      var trackRect = track.getBoundingClientRect();
-      var clickY = e.clientY - trackRect.top;
-      var ratio = clickY / trackRect.height;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      window.scrollTo({ top: ratio * docHeight, behavior: 'smooth' });
     });
   })();
   </script>
