@@ -518,6 +518,7 @@ a {
 .about-visual {
   position: sticky;
   top: 15vh;
+  min-height: 360px;
 }
 
 .about-visual img {
@@ -731,6 +732,7 @@ a {
     position: relative;
     top: auto;
     max-width: 320px;
+    min-height: 280px;
   }
 
   .about-stats {
