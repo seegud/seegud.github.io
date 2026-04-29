@@ -76,13 +76,20 @@ window.addEventListener('scroll', () => {
 
 /* ---------- Project number parallax ---------- */
 const projectNumbers = document.querySelectorAll('.project-number-bg');
+let visibleProjectCount = 0;
 
 const numberObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      window.addEventListener('scroll', handleNumberParallax);
+      visibleProjectCount++;
+      if (visibleProjectCount === 1) {
+        window.addEventListener('scroll', handleNumberParallax);
+      }
     } else {
-      window.removeEventListener('scroll', handleNumberParallax);
+      visibleProjectCount--;
+      if (visibleProjectCount === 0) {
+        window.removeEventListener('scroll', handleNumberParallax);
+      }
     }
   });
 }, { threshold: 0 });
