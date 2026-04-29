@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found | seegood</title>
+  <meta name="description" content="Sorry, the page you are looking for does not exist.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://seegud.github.io/404.html">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .error-page {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3vw;
+      overflow: hidden;
+    }
+    .error-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(10rem, 35vw, 30rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(244,244,244,0.06);
+      text-stroke: 1px rgba(244,244,244,0.06);
+      white-space: nowrap;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .error-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 600px;
+    }
+    .error-code {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .error-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .error-desc {
+      font-family: var(--font-body);
+      font-size: clamp(0.9375rem, 1.2vw, 1.125rem);
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.85;
+      margin-bottom: 3rem;
+    }
+    .error-back {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: all 0.4s var(--ease-out-quart);
+    }
+    .error-back:hover {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+    .error-footer {
+      position: absolute;
+      bottom: 3rem;
+      left: 3vw;
+      right: 3vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      z-index: 1;
+    }
+    .error-footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .error-footer-links a {
+      transition: color 0.3s;
+    }
+    .error-footer-links a:hover {
+      color: var(--text);
+    }
+    @media (max-width: 900px) {
+      .error-page {
+        padding: 0 5vw;
+      }
+      .error-footer {
+        left: 5vw;
+        right: 5vw;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <header class="site-header">
+    <a href="/" class="logo" data-cursor="hover">seegood</a>
+    <nav class="main-nav">
+      <a href="/#works" data-cursor="hover">Works</a>
+      <a href="/#about" data-cursor="hover">About</a>
+      <a href="/#contact" data-cursor="hover">Contact</a>
+    </nav>
+    <a href="https://explore.seegood.top" class="lang-switch" data-cursor="hover">中</a>
+  </header>
+
+  <main class="error-page">
+    <div class="error-bg-text" aria-hidden="true">404</div>
+    <div class="error-content">
+      <div class="error-code">404</div>
+      <h1 class="error-title">Page Not Found</h1>
+      <p class="error-desc">Sorry, the page you are looking for does not exist or has been removed.</p>
+      <a href="/" class="error-back" data-cursor="hover">Back to Home</a>
+    </div>
+    <div class="error-footer">
+      <span>© 2025 seegood</span>
+      <div class="error-footer-links">
+        <a href="https://github.com/seegud" data-cursor="hover" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.instagram.com/wuuu__mnothing" data-cursor="hover" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://b23.tv/bsoC3Xn" data-cursor="hover" target="_blank" rel="noopener">BiliBili</a>
+        <a href="https://blog.seegood.top/" data-cursor="hover" target="_blank" rel="noopener">Blog</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const cursorTrail = document.getElementById('cursorTrail');
+    let mx = 0, my = 0, tx = 0, ty = 0, trailX = 0, trailY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      tx = e.clientX;
+      ty = e.clientY;
+    });
+
+    function animate() {
+      mx += (tx - mx) * 0.2;
+      my += (ty - my) * 0.2;
+      trailX += (tx - trailX) * 0.08;
+      trailY += (ty - trailY) * 0.08;
+      cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+      cursorTrail.style.transform = `translate(${trailX - 20}px, ${trailY - 20}px)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    document.querySelectorAll('[data-cursor="hover"]').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('hover');
+        cursorTrail.classList.add('hover');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('hover');
+        cursorTrail.classList.remove('hover');
+      });
+    });
+  </script>
+</body>
+</html>
