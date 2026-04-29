@@ -106,8 +106,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (target) {
       e.preventDefault();
       const offset = 80;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+      requestAnimationFrame(() => {
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
     }
   });
 });
