@@ -398,6 +398,7 @@ a {
 .project-image-wrap {
   position: relative;
   background: var(--bg-elevated);
+  min-height: 200px;
 }
 
 .project-image-wrap img {

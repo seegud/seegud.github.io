@@ -112,6 +112,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
+      // 提前加载目标区域图片，避免滚动过程中布局偏移
+      target.querySelectorAll('img[loading="lazy"]').forEach(img => img.loading = 'eager');
       const offset = 80;
       const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
       requestAnimationFrame(() => {
