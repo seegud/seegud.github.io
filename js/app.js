@@ -10,6 +10,72 @@ let trailX = 0, trailY = 0;
 
 const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 
+/* ---------- Loader & Preload ---------- */
+(function initLoader() {
+  const loader = document.getElementById('loader');
+  const progress = document.getElementById('loaderProgress');
+  if (!loader || !progress) return;
+
+  document.body.classList.add('is-loading');
+
+  // Silent aggressive preload of all images while loader is visible
+  function preloadImages() {
+    const seen = new Set();
+    document.querySelectorAll('img[src]').forEach(img => {
+      const src = img.getAttribute('src');
+      if (!src || seen.has(src)) return;
+      seen.add(src);
+      const preload = new Image();
+      preload.src = src;
+    });
+  }
+
+  // Preload above-the-fold images immediately
+  preloadImages();
+
+  let p = 0;
+  const interval = setInterval(() => {
+    p += Math.random() * 30;
+    if (p >= 100) {
+      p = 100;
+      clearInterval(interval);
+      progress.style.width = '100%';
+      setTimeout(() => {
+        loader.classList.add('is-hidden');
+        document.body.classList.remove('is-loading');
+        startEntranceAnimations();
+      }, 400);
+    } else {
+      progress.style.width = p + '%';
+    }
+  }, 120);
+})();
+
+function startEntranceAnimations() {
+  // Trigger hero reveals with a staggered feel
+  const heroLines = document.querySelectorAll('.hero .reveal-line');
+  const heroFades = document.querySelectorAll('.hero .reveal-fade');
+
+  heroLines.forEach((el, i) => {
+    const parent = el.parentElement;
+    const siblings = parent ? parent.querySelectorAll('.reveal-line') : [];
+    const idx = Array.from(siblings).indexOf(el);
+    el.style.setProperty('--i', idx >= 0 ? idx : i);
+    el.classList.remove('is-visible');
+    void el.offsetWidth; // force reflow
+    setTimeout(() => el.classList.add('is-visible'), i * 80);
+  });
+
+  heroFades.forEach((el, i) => {
+    el.classList.remove('is-visible');
+    void el.offsetWidth;
+    setTimeout(() => el.classList.add('is-visible'), (heroLines.length * 80) + (i * 100) + 100);
+  });
+
+  // Initialize scroll reveals for the rest of the page
+  initScrollReveals();
+}
+
 /* ---------- Custom Cursor ---------- */
 if (!isTouchDevice && cursor && cursorTrail) {
   document.addEventListener('mousemove', (e) => {
@@ -43,25 +109,29 @@ if (!isTouchDevice && cursor && cursorTrail) {
 }
 
 /* ---------- Scroll Reveals (text lines) ---------- */
-const revealElements = document.querySelectorAll('.reveal-line, .reveal-fade');
+let revealObserver;
 
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const parent = entry.target.parentElement;
-      const siblings = parent ? parent.querySelectorAll('.reveal-line') : [];
-      const i = Array.from(siblings).indexOf(entry.target);
-      entry.target.style.setProperty('--i', i >= 0 ? i : 0);
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
+function initScrollReveals() {
+  const revealElements = document.querySelectorAll('.reveal-line, .reveal-fade');
+
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const parent = entry.target.parentElement;
+        const siblings = parent ? parent.querySelectorAll('.reveal-line') : [];
+        const i = Array.from(siblings).indexOf(entry.target);
+        entry.target.style.setProperty('--i', i >= 0 ? i : 0);
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -60px 0px'
   });
-}, {
-  threshold: 0.1,
-  rootMargin: '0px 0px -60px 0px'
-});
 
-revealElements.forEach(el => revealObserver.observe(el));
+  revealElements.forEach(el => revealObserver.observe(el));
+}
 
 /* ---------- Parallax for hero bg text ---------- */
 const heroBgTexts = document.querySelectorAll('.hero-bg-text, .hero-bg-text-outline');
