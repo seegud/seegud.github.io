@@ -3,55 +3,55 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://seegud.github.io/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://seegud.github.io/"/>
+    <loc>https://imwjh.github.io/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://imwjh.github.io/"/>
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://explore.seegood.top/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://seegud.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://imwjh.github.io/"/>
     <lastmod>2026-05-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://seegud.github.io/images/seegood.webp</image:loc>
+      <image:loc>https://imwjh.github.io/images/seegood.webp</image:loc>
       <image:caption>seegood Portrait</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/cgood.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/cgood.seegood.top.avif</image:loc>
       <image:caption>CGooD Start Page</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/memcull.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/memcull.seegood.top.avif</image:loc>
       <image:caption>MemCull</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/toapp.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/toapp.seegood.top.avif</image:loc>
       <image:caption>ToApp — Website to App</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/www.caibookkeeping.cyou.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/www.caibookkeeping.cyou.avif</image:loc>
       <image:caption>CaiBookkeeping</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/wabitab.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/wabitab.seegood.top.avif</image:loc>
       <image:caption>WabiTab — Minimalist Browser Extension</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/toolbox.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/toolbox.seegood.top.avif</image:loc>
       <image:caption>Toolbox — Practical Tools</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/dwd.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/dwd.seegood.top.avif</image:loc>
       <image:caption>Merge Big Belly</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/onlinegames.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/onlinegames.seegood.top.avif</image:loc>
       <image:caption>CGooD Game</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/eat.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/eat.seegood.top.avif</image:loc>
       <image:caption>What to Eat Today</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://seegud.github.io/images/blog.seegood.top.avif</image:loc>
+      <image:loc>https://imwjh.github.io/images/blog.seegood.top.avif</image:loc>
       <image:caption>Blog</image:caption>
     </image:image>
   </url>
